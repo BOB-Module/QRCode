@@ -6,13 +6,20 @@
 //
 
 import SwiftUI
+import QRCodeSwift
 
 struct ContentView: View {
+    let message = "a"
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-            Text("Hello, world!")
+            let qrCodeGen = QRCodeGen(message: message)
+            let qrUIImage = qrCodeGen.generateQRCode()
+            Image(uiImage: qrUIImage)
+                .interpolation(.none)
+                .resizable()
+                .scaledToFit()
+                .frame(width: 200, height: 200)
         }
         .padding()
     }
